@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.provider.ClientDetails;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService, ClientDetailsService {
 
     @Autowired
     private UserRepository repo;
@@ -28,5 +30,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public void createUser(User user) {
         repo.saveAndFlush(user);
+    }
+
+    @Override
+    public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
+        return null;
     }
 }

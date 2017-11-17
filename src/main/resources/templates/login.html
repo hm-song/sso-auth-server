@@ -9,19 +9,19 @@
 
         <title>Gentelella Alela! | </title>
 
-        <script src="/vendors/jquery/dist/jquery.min.js"></script>
-        <script src="/vendors/jquery-form/jquery.form.min.js"></script>
+        <script src="vendors/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/jquery-form/jquery.form.min.js"></script>
 
         <!-- Bootstrap -->
-        <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
         <!-- Font Awesome -->
-        <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
         <!-- NProgress -->
-        <link href="/vendors/nprogress/nprogress.css" rel="stylesheet"/>
+        <link href="vendors/nprogress/nprogress.css" rel="stylesheet"/>
         <!-- Animate.css -->
-        <link href="/vendors/animate.css/animate.min.css" rel="stylesheet"/>
+        <link href="vendors/animate.css/animate.min.css" rel="stylesheet"/>
         <!-- Custom Theme Style -->
-        <link href="/build/css/custom.min.css" rel="stylesheet">
+        <link href="build/css/custom.min.css" rel="stylesheet">
     </head>
 
     <body class="login">
@@ -111,7 +111,7 @@
         <script>
             $('#buttonLogin').click(function() {
                 $('#formLogin').ajaxSubmit({
-                    url: '/login',
+                    url: 'login',
                     type: 'post',
                     success: function() {
                         window.location.href='/index';

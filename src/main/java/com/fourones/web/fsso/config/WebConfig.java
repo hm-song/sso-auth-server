@@ -7,23 +7,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
 @Configuration
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/home").setViewName("home");
-        registry.addViewController("/loginForm").setViewName("login");
         registry.addViewController("/index").setViewName("index");
-
-        registry.addRedirectViewController("/", "/loginForm");
+        registry.addViewController("/loginForm").setViewName("login");
+        registry.addRedirectViewController("/", "/login");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/")
-//                .setCachePeriod(3600)
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/")
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver());
     }

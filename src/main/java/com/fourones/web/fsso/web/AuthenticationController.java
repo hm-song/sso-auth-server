@@ -4,24 +4,26 @@ import com.fourones.web.fsso.entity.User;
 import com.fourones.web.fsso.service.authentication.CustomUserDetailsService;
 import com.fourones.web.fsso.service.authentication.type.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 public class AuthenticationController {
-
-    @Autowired
-    private PasswordEncoder pwEncoder;
 
     @Autowired
     private CustomUserDetailsService service;
 
     @PostMapping(value = "/signIn")
     public void signIn(String id, String password, String userName) {
-        String encodedPwd = pwEncoder.encode(password);
-        User user = new User(id, userName, encodedPwd, UserRole.ADMIN);
-        service.createUser(user);
+        User UserController = new User(id, userName, password, UserRole.ADMIN);
+        service.createUser(UserController);
     }
 
+    @GetMapping(value = "/me")
+    public Principal getUser(Principal principal) {
+        return principal;
+    }
 }
