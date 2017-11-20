@@ -29,9 +29,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .secret("demo")
                 .authorizedGrantTypes("authorization_code")
                 .scopes("read")
-                .autoApprove(true)
-        // .accessTokenValiditySeconds(3600)
-        ; // 1 hour
+                .autoApprove(true);
     }
 
     @Override
