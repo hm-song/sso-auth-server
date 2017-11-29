@@ -1,13 +1,17 @@
 package com.fourones.web.fsso.entity;
 
-import com.fourones.web.fsso.service.authentication.type.UserRole;
+import com.fourones.web.fsso.entity.converter.StringToAuthoritiesConverter;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
-import java.util.Arrays;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Collection;
+import java.util.List;
+
 
 @Entity
 @Table(name = "USER")
@@ -21,10 +25,10 @@ public class User implements UserDetails {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+    @Convert(converter = StringToAuthoritiesConverter.class)
+    private List<GrantedAuthority> role;
 
-    public User(String id, String username, String password, UserRole role) {
+    public User(String id, String username, String password, List<GrantedAuthority> role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -36,7 +40,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(role);
+        return role;
     }
 
     @Override

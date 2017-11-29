@@ -6,11 +6,13 @@ import com.fourones.web.fsso.service.authentication.type.UserRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.Arrays;
 
 @RestController
 public class AuthenticationController {
@@ -22,7 +24,7 @@ public class AuthenticationController {
 
     @PostMapping(value = "/signIn")
     public void signIn(String id, String password, String userName) {
-        User UserController = new User(id, userName, password, UserRole.ADMIN);
+        User UserController = new User(id, userName, password, Arrays.asList(new SimpleGrantedAuthority("USER")));
         service.createUser(UserController);
     }
 
