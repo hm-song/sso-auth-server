@@ -17,16 +17,10 @@ import org.springframework.security.oauth2.provider.request.DefaultOAuth2Request
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
     private CustomClientDetailsService clientDetailsService;
 
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-
-//        oauthServer.tokenKeyAccess("permitAll()")
-//                .checkTokenAccess("isAuthenticated()");
     }
 
     @Override
@@ -39,7 +33,5 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         DefaultOAuth2RequestFactory oAuth2RequestFactory = new DefaultOAuth2RequestFactory(clientDetailsService);
         oAuth2RequestFactory.setCheckUserScopes(true);
         endpoints.requestFactory(oAuth2RequestFactory);
-//        endpoints.authenticationManager(authenticationManager);
     }
-
 }

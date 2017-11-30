@@ -1,6 +1,5 @@
 package com.fourones.web.fsso.entity;
 
-import com.fourones.web.fsso.service.authentication.type.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -74,7 +73,7 @@ public class Client implements ClientDetails {
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("DM_SVC_AUTH"));
+        return Arrays.asList(new SimpleGrantedAuthority(scope));
     }
 
     @Override
@@ -97,4 +96,14 @@ public class Client implements ClientDetails {
         return null;
     }
 
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "clientId='" + clientId + '\'' +
+                ", clientSecret='" + clientSecret + '\'' +
+                ", scope='" + scope + '\'' +
+                ", authorities='" + authorities + '\'' +
+                '}';
+    }
 }

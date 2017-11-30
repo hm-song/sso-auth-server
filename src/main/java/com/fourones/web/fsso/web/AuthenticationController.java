@@ -7,14 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Arrays;
 
-@RestController
+@Controller
 public class AuthenticationController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
@@ -22,13 +22,22 @@ public class AuthenticationController {
     @Autowired
     private CustomUserDetailsService service;
 
+    // Login form with error
+    @RequestMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
+    }
+
     @PostMapping(value = "/signIn")
+    @ResponseBody
     public void signIn(String id, String password, String userName) {
         User UserController = new User(id, userName, password, Arrays.asList(new SimpleGrantedAuthority("USER")));
         service.createUser(UserController);
     }
 
     @GetMapping(value = "/me")
+    @ResponseBody
     public Principal getUser(Principal principal) {
         logger.info("[TEST] {}", principal);
         return principal;

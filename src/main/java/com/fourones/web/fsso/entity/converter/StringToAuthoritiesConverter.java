@@ -25,6 +25,7 @@ public class StringToAuthoritiesConverter implements AttributeConverter<List<Gra
     public List<GrantedAuthority> convertToEntityAttribute(String dbData) {
         if (dbData.indexOf(",") >= 0) {
             return Arrays.stream(dbData.split(","))
+                    .map(String::trim)
                     .map(SimpleGrantedAuthority::new)
                     .collect(toList());
         } else {
