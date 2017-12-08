@@ -25,7 +25,6 @@ public class CustomClientDetailsService implements ClientDetailsService {
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
         Client client = repo.findOne(clientId);
-        logger.info("[TEST] clientId={}, client={}", clientId, client);
         if (client == null) {
             throw new ClientRegistrationException("Client is not found. clientId=" + clientId);
         }
