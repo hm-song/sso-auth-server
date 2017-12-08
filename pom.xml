@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.fourones.fourones.web</groupId>
+	<groupId>hm.song.practice</groupId>
 	<artifactId>fsso</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>fsso</name>
-	<description>Fourones Single Sign On</description>
+	<name>sso-auth-server</name>
+	<description>Single Sign On Authorization Server</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -44,17 +44,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
-		<!-- View -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.nekohtml</groupId>
-			<artifactId>nekohtml</artifactId>
-		</dependency>
-
 
         <!-- OAuth2 -->
         <dependency>
